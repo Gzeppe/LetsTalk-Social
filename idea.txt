@@ -1,0 +1,13 @@
+I want to create a social platform that values equality.
+
+You are not allowed to create a post unless you have responded to a previous post in your feed.
+
+The idea is to equally divide engagement since so many people don't engage equally.
+
+Need a way to validate if a response to a post is relevant to the initial post.
+
+Essentially can be what facebook is, a user profile with a wall of posts, the feed is only your friends, this isn't supposed to be anything more than that.
+
+Share thoughts and ideas, how your feeling, what are you doing in that moment, what are you looking to do, etc.
+
+ex. beautiful women tend to get way more attention then men. forums are rigid and people tend to be asshole, but I want to foster engagement in a way that's never been seen before. The amount of people seeking attention has never been hire. Everyone deserves to be heard. 

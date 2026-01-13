@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LetsTalk - Equal Engagement Social Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Auth Screen -->
+    <div id="auth-screen" class="screen active">
+        <div class="auth-container">
+            <h1>LetsTalk</h1>
+            <p class="tagline">Where everyone's voice matters equally</p>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form active">
+                <input type="email" id="login-email" placeholder="Email" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+                <button type="submit">Login</button>
+                <p class="error-message" id="login-error"></p>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signup-form" class="auth-form">
+                <input type="text" id="signup-name" placeholder="Full Name" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <input type="password" id="signup-password" placeholder="Password (min 6 characters)" required>
+                <input type="text" id="signup-bio" placeholder="Short bio (optional)">
+                <button type="submit">Sign Up</button>
+                <p class="error-message" id="signup-error"></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Welcome Screen (First-time users) -->
+    <div id="welcome-screen" class="screen">
+        <div class="container">
+            <div class="welcome-header">
+                <h2>Welcome to LetsTalk!</h2>
+                <p>To get started, please respond to one of these welcome posts. This unlocks your ability to create posts.</p>
+            </div>
+
+            <div id="welcome-posts" class="posts-container"></div>
+        </div>
+    </div>
+
+    <!-- Main App Screen -->
+    <div id="app-screen" class="screen">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-brand">LetsTalk</div>
+            <div class="nav-menu">
+                <button class="nav-btn active" data-view="feed">Feed</button>
+                <button class="nav-btn" data-view="profile">My Profile</button>
+                <button class="nav-btn" data-view="friends">Friends</button>
+            </div>
+            <div class="nav-user">
+                <span class="response-credits">Credits: <strong id="credit-count">0</strong></span>
+                <button id="logout-btn">Logout</button>
+            </div>
+        </nav>
+
+        <!-- Feed View -->
+        <div id="feed-view" class="view active">
+            <div class="container">
+                <div class="view-header">
+                    <h2>Your Feed</h2>
+                    <button id="create-post-btn" class="btn-primary">Create Post</button>
+                </div>
+
+                <div id="create-post-section" class="create-post-section hidden">
+                    <h3>Create a New Post</h3>
+                    <p class="credits-info">Response Credits Available: <strong id="credits-available">0</strong></p>
+                    <textarea id="post-content" placeholder="What's on your mind? Share your thoughts, feelings, what you're doing, or what you're looking to do..." maxlength="500"></textarea>
+                    <div class="post-actions">
+                        <span class="char-count"><span id="char-count">0</span>/500</span>
+                        <button id="submit-post-btn" class="btn-primary">Post</button>
+                        <button id="cancel-post-btn" class="btn-secondary">Cancel</button>
+                    </div>
+                    <p class="error-message" id="post-error"></p>
+                </div>
+
+                <div id="feed-posts" class="posts-container"></div>
+                <p id="empty-feed-message" class="empty-message hidden">Your feed is empty. Add friends to see their posts!</p>
+            </div>
+        </div>
+
+        <!-- Profile View -->
+        <div id="profile-view" class="view">
+            <div class="container">
+                <div class="profile-header">
+                    <div class="profile-pic-large" id="profile-pic-display"></div>
+                    <div class="profile-info">
+                        <h2 id="profile-name">User Name</h2>
+                        <p id="profile-bio">Bio goes here</p>
+                        <div class="profile-stats">
+                            <span>Posts: <strong id="profile-post-count">0</strong></span>
+                            <span>Friends: <strong id="profile-friend-count">0</strong></span>
+                            <span>Response Credits: <strong id="profile-credits">0</strong></span>
+                        </div>
+                        <button id="edit-profile-btn" class="btn-secondary">Edit Profile</button>
+                    </div>
+                </div>
+
+                <!-- Edit Profile Form -->
+                <div id="edit-profile-section" class="edit-profile-section hidden">
+                    <h3>Edit Profile</h3>
+                    <input type="text" id="edit-name" placeholder="Full Name">
+                    <textarea id="edit-bio" placeholder="Bio" maxlength="200"></textarea>
+                    <div class="profile-pic-selector">
+                        <p>Choose Profile Picture:</p>
+                        <div class="pic-options">
+                            <div class="pic-option" data-pic="1">👤</div>
+                            <div class="pic-option" data-pic="2">😊</div>
+                            <div class="pic-option" data-pic="3">🎨</div>
+                            <div class="pic-option" data-pic="4">🎭</div>
+                            <div class="pic-option" data-pic="5">🌟</div>
+                            <div class="pic-option" data-pic="6">🎸</div>
+                            <div class="pic-option" data-pic="7">📚</div>
+                            <div class="pic-option" data-pic="8">⚡</div>
+                        </div>
+                    </div>
+                    <div class="edit-actions">
+                        <button id="save-profile-btn" class="btn-primary">Save</button>
+                        <button id="cancel-edit-btn" class="btn-secondary">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="profile-posts">
+                    <h3>My Posts</h3>
+                    <div id="profile-posts" class="posts-container"></div>
+                    <p id="empty-profile-message" class="empty-message hidden">You haven't posted anything yet.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Friends View -->
+        <div id="friends-view" class="view">
+            <div class="container">
+                <h2>Friends</h2>
+
+                <div class="friends-section">
+                    <h3>Add Friends</h3>
+                    <div class="add-friend-form">
+                        <input type="email" id="friend-email" placeholder="Enter friend's email">
+                        <button id="add-friend-btn" class="btn-primary">Send Request</button>
+                    </div>
+                    <p class="error-message" id="friend-error"></p>
+                    <p class="success-message" id="friend-success"></p>
+                </div>
+
+                <div class="friends-section">
+                    <h3>Friend Requests (<span id="request-count">0</span>)</h3>
+                    <div id="friend-requests" class="friend-requests"></div>
+                </div>
+
+                <div class="friends-section">
+                    <h3>My Friends (<span id="friends-count">0</span>)</h3>
+                    <div id="friends-list" class="friends-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Response Modal -->
+    <div id="response-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Respond to Post</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="original-post">
+                    <p><strong>Original Post:</strong></p>
+                    <p id="original-post-content"></p>
+                </div>
+                <textarea id="response-content" placeholder="Write a relevant response... (Try to engage with the topic meaningfully)" maxlength="300"></textarea>
+                <div class="response-validation">
+                    <span id="validation-message"></span>
+                </div>
+                <div class="char-count"><span id="response-char-count">0</span>/300</div>
+            </div>
+            <div class="modal-footer">
+                <button id="submit-response-btn" class="btn-primary">Submit Response</button>
+                <button id="cancel-response-btn" class="btn-secondary">Cancel</button>
+            </div>
+            <p class="error-message" id="response-error"></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
