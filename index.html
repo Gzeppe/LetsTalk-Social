@@ -4,7 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LetsTalk - Equal Engagement Social Platform</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'warm-yellow': '#FCD34D',
+                        'light-yellow': '#FEF3C7',
+                        'dark-brown': '#422006',
+                        'medium-brown': '#78350F',
+                        'light-brown': '#92400E',
+                        'coffee': '#451a03',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+    </style>
 </head>
 <body>
     <!-- Auth Screen -->
@@ -173,7 +194,7 @@
             <div class="container">
                 <div class="about-header">
                     <h2>About LetsTalk</h2>
-                    <p class="about-subtitle">Where everyone's voice matters equally</p>
+                    <p class="about-subtitle">Where everyone's voice matters</p>
                 </div>
 
                 <div class="about-section">
